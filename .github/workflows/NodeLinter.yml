@@ -1,4 +1,4 @@
-name: Node Lint
+name: Node Linter
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - main
 
 permissions:
-  contents: write 
+  contents: write
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: clone repo to docker
+      - name: Check out repo
         uses: actions/checkout@v4
 
       - name: Set up Node
@@ -20,21 +20,27 @@ jobs:
         with:
           node-version: 18
 
+      
       - name: Install dependencies
-        run: npm ci
+        working-directory: codeRace/server/nodeJs
+        run: npm install
 
-      - name: Run ESLint
+      # Run ESLint
+      - name: ESLint
+        working-directory: codeRace/server/nodeJs_server/
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
-    
       - name: ESLint fix
-        run: npx eslint --fix . --ext .js,.jsx,.ts,.tsx
+        if: success()
+        working-directory: codeRace/server/nodeJs_server/
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx --fix
 
-      - name: Commit & push if clean
+      # Commit & push (optional)
+      - name: Commit & Push
         if: success()
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
-          git commit -m "Auto-fix JavaScript/TypeScript code via ESLint"
+          git commit -m "Auto-fix JavaScript code via ESLint"
           git push
