@@ -1,0 +1,23 @@
+"on":
+  push:
+    branches:
+      - main
+jobs:
+  lint:
+    name: run python linting test
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone the python repo
+        uses: actions/checkout@v4
+      - name: setting up python
+        uses: actions/setup-python@v4
+      - name: setting up venv + dependcies
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+      - name: run flake8 linting
+        run: flake8 . --count --show-source --statistics
