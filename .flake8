@@ -1,0 +1,3 @@
+[flake8]
+exclude = env, __pycache__, ExempleArr.py
+max-line-length = 100
