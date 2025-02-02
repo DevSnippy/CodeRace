@@ -26,7 +26,7 @@ jobs:
       - name: Autopep8 to fix issues
         run: |
           autopep8 --in-place --aggressive --aggressive --recursive . \
-                   --exclude ExempleArr.py
+            --exclude ExempleArr.py
 
       - name: Run flake8 to test and lint
         run: flake8 . --count --show-source --statistics
