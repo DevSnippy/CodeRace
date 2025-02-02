@@ -11,78 +11,15 @@ with open("../jsons/10mb.json") as json_file:
     PythonData = json.load(json_file)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/PyJson/10mb")
 def json_route():
     return jsonify(PythonData)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @app.route("/quickSort/sorted/500")
 def quicksort_route():
     sorted_arr = quickSort(ExempleArr.arrOf500k)
     return str(sorted_arr)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
