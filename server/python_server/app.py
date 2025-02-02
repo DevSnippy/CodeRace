@@ -3,7 +3,7 @@ from flask_cors import CORS
 import json
 from quickSort import quickSort
 import ExempleArr
-
+# this is a linting test commit
 app = Flask(__name__)
 CORS(app)
 
@@ -16,11 +16,43 @@ def json_route():
     return jsonify(PythonData)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/quickSort/sorted/500")
 def quicksort_route():
     sorted_arr = quickSort(ExempleArr.arrOf500k)
     return str(sorted_arr)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
-    app.run(port=3002)  # This is a linter test. I want to see if the linter will run.
+    app.run(port=3002)
