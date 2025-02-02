@@ -1,36 +1,42 @@
-name: Python linter and syntax fixer
-'on':
+name: Python Fix and Lint
+
+on:
   push:
     branches:
       - main
+
 permissions:
   contents: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: clone repo
+      - name: clone the repo
         uses: actions/checkout@v4
-      - name: Set up Python
+
+      - name: set up python
         uses: actions/setup-python@v4
-      - name: Install dependencies
+
+      - name: Install flake8 & autopep8
         run: |
           python -m pip install --upgrade pip
           pip install flake8 autopep8
-      - name: Create Flake8 config
+
+      - name: Autopep8 to fix issues
         run: |
-          echo "[flake8]" > .flake8
-          echo "exclude = env, __pycache__, ExempleArr.py" >> .flake8
-          echo "max-line-length = 100" >> .flake8
-      - name: Run Flake8
+          autopep8 --in-place --aggressive --aggressive --recursive . \
+                   --exclude ExempleArr.py
+
+      - name: Run flake8 to test and lint
         run: flake8 . --count --show-source --statistics
-      - name: fix formatting with autopep8
-        run: autopep8 --in-place --aggressive --aggressive --recursive .
-      - name: Commit & push changes
+
+      - name: Commit & push if clean
         if: success()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Auto-fix Python code using autopep8"
+          git commit -m "Auto-fix Python code"
           git push
+
