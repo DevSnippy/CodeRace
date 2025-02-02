@@ -15,7 +15,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - name: Install npm dependecies
+      - name: Check for package-lock.json
+        run: |
+          if [ ! -f package-lock.json ]; then
+            echo "package-lock.json is missing. Run 'npm install' locally to generate it."
+            exit 1
+          fi
+      - name: Install npm dependencies
         run: npm ci
       - name: ESLint lint
         run: npm run lint
