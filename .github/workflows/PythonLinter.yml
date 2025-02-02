@@ -13,11 +13,16 @@ jobs:
         uses: actions/setup-python@v4
       - name: setting up venv + dependcies
         uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8
+
+      - name: Create Flake8 Config to ignore test array
+        run: |
+          echo "[flake8]" > .flake8
+          echo "exclude = ExempleArr.py" >> .flake8
+          echo "max-line-length = 100" >> .flake8
+
       - name: run flake8 linting
         run: flake8 . --count --show-source --statistics
