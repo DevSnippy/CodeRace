@@ -10,6 +10,28 @@ const port = 3001;
 app.use(cors());
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/quickSort/sorted/500', (req, res) => { 
   const sortedArr = (quickSort(arrOfHalfMil)) 
   console.log (sortedArr)
