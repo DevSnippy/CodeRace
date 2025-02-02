@@ -11,6 +11,28 @@ with open("../jsons/10mb.json") as json_file:
     PythonData = json.load(json_file)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/PyJson/10mb")
 def json_route():
     return jsonify(PythonData)
