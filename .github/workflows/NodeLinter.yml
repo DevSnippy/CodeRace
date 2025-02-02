@@ -1,37 +1,40 @@
-name: Node Fix and Lint
-'on':
+name: Node Lint
+
+on:
   push:
     branches:
       - main
+
 permissions:
-  contents: write
+  contents: write 
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: clone the repo
+      - name: clone repo to docker
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - name: Check for package-lock.json
-        run: |
-          if [ ! -f package-lock.json ]; then
-            echo "package-lock.json is missing. Run 'npm install' locally to generate it."
-            exit 1
-          fi
-      - name: Install npm dependencies
+          node-version: 18
+
+      - name: Install dependencies
         run: npm ci
-      - name: ESLint lint
-        run: npm run lint
+
+      - name: Run ESLint
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+
+    
       - name: ESLint fix
-        run: npm run lint:fix
+        run: npx eslint --fix . --ext .js,.jsx,.ts,.tsx
+
       - name: Commit & push if clean
         if: success()
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add .
-          git commit -m "Auto-fix JavaScript code via ESLint"
+          git commit -m "Auto-fix JavaScript/TypeScript code via ESLint"
           git push
