@@ -22,20 +22,19 @@ jobs:
 
       
       - name: Install dependencies
-        working-directory: codeRace/server/nodeJs_server/
+        working-directory: server/nodeJs_server
         run: npm install
 
       # Run ESLint
       - name: ESLint
-        working-directory: codeRace/server/nodeJs_server/
+        working-directory: server/nodeJs_server/
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
       - name: ESLint fix
         if: success()
-        working-directory: codeRace/server/nodeJs_server/
+        working-directory: server/nodeJs_server/
         run: npx eslint . --ext .js,.jsx,.ts,.tsx --fix
 
-      # Commit & push (optional)
       - name: Commit & Push
         if: success()
         run: |
