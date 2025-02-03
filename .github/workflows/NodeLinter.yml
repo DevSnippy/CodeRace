@@ -1,33 +1,39 @@
-name: Node Fix and Lint
-'on':
+name: Node Lint
+
+on:
   push:
     branches:
       - main
+
 permissions:
   contents: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: clone the repo
+      - name: Check out repo
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - name: Check for package-lock.json
-        run: |
-          if [ ! -f package-lock.json ]; then
-            echo "package-lock.json is missing. Run 'npm install' locally to generate it."
-            exit 1
-          fi
-      - name: Install npm dependencies
-        run: npm ci
-      - name: ESLint lint
-        run: npm run lint
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: server/nodeJs_server
+        run: npm install
+
+      - name: ESLint
+        working-directory: server/nodeJs_server/
+        run: npx eslint .
+
       - name: ESLint fix
-        run: npm run lint:fix
-      - name: Commit & push if clean
+        if: success()
+        working-directory: server/nodeJs_server/
+        run: npx eslint . --fix
+
+      - name: Commit & Push
         if: success()
         run: |
           git config user.name github-actions
