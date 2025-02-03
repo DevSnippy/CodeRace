@@ -22,7 +22,7 @@ jobs:
 
       
       - name: Install dependencies
-        working-directory: codeRace/server/nodeJs
+        working-directory: codeRace/server/nodeJs_server/
         run: npm install
 
       # Run ESLint
