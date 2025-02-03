@@ -1,23 +1,27 @@
 // eslint.config.js
-module.exports = {
+module.exports = [
+  {
+    languageOptions: {
+      globals: {
+        window: "readonly",
+        document: "readonly",
+        process: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
+      },
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: "module",
+      },
+    },
 
-  env: {
-    browser: true,
-    node: true,
-    es2021: true,
+    extends: "eslint:recommended",
+
+    rules: {
+      "no-console": "warn",
+      "indent": ["error", 2],
+    },
+
+    ignores: ["node_modules/", "dist/", "arrays.mjs"],
   },
-
-  extends: "eslint:recommended",
-
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-
-  rules: {
-    "no-console": "warn",
-    "indent": ["error", 2],
-  },
-
-  ignorePatterns: ["node_modules/", "dist/" , "arrays.mjs"],
-};
+];
