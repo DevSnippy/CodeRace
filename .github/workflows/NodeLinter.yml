@@ -12,7 +12,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repo
+      - name: clone the repo
         uses: actions/checkout@v4
 
       - name: Set up Node
@@ -24,14 +24,14 @@ jobs:
         working-directory: server/nodeJs_server
         run: npm install
 
-      - name: ESLint
+      - name: prettier fix formatting
         working-directory: server/nodeJs_server/
-        run: npx eslint .
+        run: npm run  format:fix
 
-      - name: ESLint fix
+      - name: prettier lint
         if: success()
         working-directory: server/nodeJs_server/
-        run: npx eslint . --fix
+        run: npm run  format:check
 
       - name: Commit & Push
         if: success()
@@ -39,5 +39,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Auto-fix JavaScript code via ESLint"
+          git commit -m "Auto-fix JavaScript code via prettier"
           git push
