@@ -1,4 +1,4 @@
-name: Node Linter
+name: Node Lint
 
 on:
   push:
@@ -20,20 +20,18 @@ jobs:
         with:
           node-version: 18
 
-      
       - name: Install dependencies
         working-directory: server/nodeJs_server
         run: npm install
 
-      # Run ESLint
       - name: ESLint
         working-directory: server/nodeJs_server/
-        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+        run: npx eslint .
 
       - name: ESLint fix
         if: success()
         working-directory: server/nodeJs_server/
-        run: npx eslint . --ext .js,.jsx,.ts,.tsx --fix
+        run: npx eslint . --fix
 
       - name: Commit & Push
         if: success()
