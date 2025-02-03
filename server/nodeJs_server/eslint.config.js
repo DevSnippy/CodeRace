@@ -20,5 +20,5 @@ module.exports = {
     "indent": ["error", 2],
   },
 
-  ignorePatterns: ["node_modules/", "dist/" , "arrays.mjs"]],
+  ignorePatterns: ["node_modules/", "dist/" , "arrays.mjs"],
 };
