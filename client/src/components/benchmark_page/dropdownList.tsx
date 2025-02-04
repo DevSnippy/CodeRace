@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 type Props = {
   NodeJsComponent: React.FC;
@@ -11,24 +11,34 @@ const ComponentDropdown: React.FC<Props> = ({
   PytonComponent,
   RustComponent,
 }) => {
-  const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
+  const [selectedComponent, setSelectedComponent] = useState<string | null>(
+    null,
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedComponent(event.target.value);
   };
 
   return (
-    <div className=''>
-      <select className='outline' value={selectedComponent ?? ''} onChange={handleChange}>
-        <option value="">Select a languge</option>
+    <div className="flex flex-col items-center">
+      <select
+        className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700
+                   focus:outline-none focus:border-blue-500 transition-colors"
+        value={selectedComponent ?? ""}
+        onChange={handleChange}
+      >
+        <option value="">Select a language</option>
         <option value="nodejs">Node.js</option>
         <option value="python">Python</option>
         <option value="rust">Rust</option>
       </select>
-      <br />
-      {selectedComponent === 'nodejs' && <NodeJsComponent />}
-      {selectedComponent === 'python' && <PytonComponent />}
-      {selectedComponent === 'rust' && <RustComponent />}
+
+      {/* Render the selected component below the dropdown */}
+      <div className="mt-4 text-white w-full">
+        {selectedComponent === "nodejs" && <NodeJsComponent />}
+        {selectedComponent === "python" && <PytonComponent />}
+        {selectedComponent === "rust" && <RustComponent />}
+      </div>
     </div>
   );
 };

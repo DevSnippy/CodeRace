@@ -31,7 +31,7 @@ jobs:
       - name: prettier lint
         if: success()
         working-directory: server/nodeJs_server/
-        run: npm run  format:check
+        run: npm run format:check
 
       - name: Commit & Push
         if: success()

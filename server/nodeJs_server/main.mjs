@@ -4,14 +4,13 @@ import cors from "cors";
 import { quickSort } from "./quickSort.mjs";
 import { arrOfHalfMil } from "./arrays.mjs";
 
-const app = express();
+const app = express()
 const port = 3001;
 
 app.use(cors());
 
 app.get("/quickSort/sorted/500", (req, res) => {
   const sortedArr = quickSort(arrOfHalfMil);
-  console.log(sortedArr);
   res.send(quickSort(arrOfHalfMil));
 });
 

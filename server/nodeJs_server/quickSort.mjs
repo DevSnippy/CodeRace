@@ -3,18 +3,6 @@ export function quickSort(arr) {
     return arr;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   const pivot = arr[0];
   const left = [];
   const right = [];

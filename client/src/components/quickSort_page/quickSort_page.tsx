@@ -1,46 +1,39 @@
-import ComponentDropdown from "./dropdownList"
-import node from "./sort_nodeJS"
-import python from "./sort_Python"
-import rust from "./sort_rust" 
+import React from "react";
+import ComponentDropdown from "./dropdownList";
+import node from "./sort_nodeJS";
+import python from "./sort_Python";
+import rust from "./sort_rust";
 
 export default function QuickSortPage() {
   return (
-   <div className="app text-center">
-      <h1 className="text-4xl">Welcome to the QuickSort Benchmark Page</h1>
-      <br />
-      <br />
-      <br />
-      <p>
-        <h1 className="text-lg">Welcome to the QuickSort Benchmark Page</h1>
-        This page compares the time it takes to sort an array of 500,000 numbers
-        using different server-side technologies. <br/> QuickSort is a popular
-        sorting algorithm used to sort large datasets efficiently.<br/> By comparing
-        the sorting times of different server-side technologies,<br/> we can get an
-        idea of which technology is faster or more efficient.
+    <div className="p-6 text-center flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+      <h1 className="text-5xl font-extrabold mb-6">QuickSort Benchmark</h1>
+
+      <p className="text-lg mb-8 max-w-2xl leading-relaxed">
+        This benchmark compares the time taken to sort an array of{" "}
+        <span className="font-semibold">500,000</span> numbers using the{" "}
+        <span className="font-semibold">QuickSort</span> algorithm in different
+        programming languages.
+        <br />
+        By analyzing execution times, we can determine the efficiency of each
+        language in handling computational tasks.
       </p>
-      <br/>
-      <ComponentDropdown
-        NodeJsComponent={node}
-        PytonComponent={python}
-        RustComponent={rust}
-      />
 
-<br/>
+      {/* Container for the dropdown */}
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full mb-8">
+        <ComponentDropdown
+          NodeJsComponent={node}
+          PytonComponent={python}
+          RustComponent={rust}
+        />
+      </div>
 
-<ComponentDropdown
-        NodeJsComponent={node}
-        PytonComponent={python}
-        RustComponent={rust}
-      /> 
-      <br/>
-        <p className="text-lg">
-        This benchmark measures the time it takes for each technology to sort an array<br/>
-        of 500,000 numbers using QuickSort. The results can be affected by factors such <br/>
-        as server load and processing power, so keep that in mind when interpreting <br/>
-        the data. Click on the dropdown menu above to see the results for each technology. <br/>
-        <br/>hoped that you find this informative!
+      <p className="text-lg mt-10 max-w-2xl leading-relaxed">
+        Sorting performance can be influenced by factors such as{" "}
+        <span className="font-semibold">server load</span> and{" "}
+        <span className="font-semibold">hardware resources</span>. Use the
+        dropdown above to explore results for each technology.
       </p>
     </div>
   );
 }
-
