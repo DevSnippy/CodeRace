@@ -21,4 +21,4 @@ jobs:
           ${{ runner.os }}-buildx-
 
     - name: Build Docker image
-      run: docker build -t coderace-server .
+      run: docker build -t coderace-server -f .github/workflows/Dockerfile .
