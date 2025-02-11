@@ -11,27 +11,23 @@ use rocket::response::content::RawJson;
 use rocket::serde::json::Json;
 use rocket_cors::{AllowedHeaders, AllowedOrigins, CorsOptions};
 
-use std::path::PathBuf;
 use relative_path::RelativePath;
+use std::path::PathBuf;
 
 #[get("/rustJson/10mb")]
 async fn rust_json() -> Result<RawJson<String>, Status> {
-    // Get the path of the current executable
     let exe_path = std::env::current_exe().map_err(|err| {
         eprintln!("Error getting current exe path: {:?}", err);
         Status::InternalServerError
     })?;
 
-    // Get the directory where the executable lives
     let exe_dir = exe_path.parent().ok_or_else(|| {
         eprintln!("Could not get exe directory");
         Status::InternalServerError
     })?;
 
-    // Build the relative path to your file. Adjust as needed.
     let relative_path = RelativePath::new("./10mb.json");
 
-    // Convert the relative path to a logical path (handles '..' correctly)
     let full_path: PathBuf = relative_path.to_logical_path(exe_dir);
 
     match rocket::tokio::fs::read_to_string(&full_path).await {
@@ -52,14 +48,11 @@ fn quicksort() -> Json<Vec<i32>> {
 
 #[launch]
 fn rocket() -> _ {
-    // Configure allowed origins (adjust as needed for your deployment).
     let allowed_origins = AllowedOrigins::some_exact(&["http://localhost:3000"]);
 
-    // Build the CORS options.
     let cors = CorsOptions {
         allowed_origins,
         allowed_headers: AllowedHeaders::all(),
-        // You can adjust other options such as allowed methods, credentials, etc.
         ..Default::default()
     }
     .to_cors()
