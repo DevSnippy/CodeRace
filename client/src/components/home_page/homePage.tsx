@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
@@ -29,7 +30,9 @@ const HomePage: React.FC = () => {
 
       <div className="mt-8">
         <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg text-lg">
-          Start Benchmarking
+          <Link to="/quicksort" className="flex items-center text-white">
+            Start A Benchmark!
+          </Link>
         </button>
       </div>
     </div>
