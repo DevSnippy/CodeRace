@@ -1,5 +1,4 @@
 def quickSort(arr):
-    """Sorts an array using the QuickSort algorithm."""
     if len(arr) <= 1:
         return arr
 
