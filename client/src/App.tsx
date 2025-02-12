@@ -5,6 +5,7 @@ import AboutPage from "./components/about_page/about";
 import BenchmarkPage from "./components/benchmark_page/benchmark_page";
 import QuickSortPage from "./components/quickSort_page/quickSort_page";
 import CryptoPage from "./components/crypto_page/crypto_page";
+import QuickSortBenchmark from "./components/Graphs_page_quicksort/graphs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         </div>
         <div className="bg-gray-950 text-gray-400">
           <Routes>
+            <Route path="/QuickSort-Graph" element={<QuickSortBenchmark />} />
             <Route path="/crypto" element={<CryptoPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/fetch" element={<BenchmarkPage />} />
