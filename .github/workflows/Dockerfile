@@ -25,24 +25,26 @@ RUN python3 -m pip install -r requirements.txt
 RUN python3 -m pip install gunicorn
 
 WORKDIR /app/codeRace/server/rust_server
-RUN cargo build
+RUN cargo build --release
 
 WORKDIR /app/codeRace/client/
 RUN npm install
+RUN npm install -g serve
+RUN npm run build
 
 EXPOSE 3000 3001 3002 3003
 
 WORKDIR /app/codeRace/server/
-RUN cp jsons/10mb.json rust_server/target/debug/
+RUN cp jsons/10mb.json rust_server/target/release/
 
 CMD ["/bin/bash", "-c", "\
-  echo 'Starting Node server (port 3001)...'; \
-  (cd nodeJs_server && node main.mjs) & \
-  echo 'Starting client (port 3000)...'; \
-  (cd ../client && npm run start) & \
-  echo 'Starting Python server (port 3002) with Gunicorn...'; \
-  (cd python_server && gunicorn -w 4 -b 0.0.0.0:3002 app:app) & \
-  echo 'Starting rust server (port 3003) .'; \
-  (cd rust_server && ROCKET_ADDRESS=0.0.0.0 ROCKET_PORT=3003 cargo run) & \
-  echo 'All services started. Press Ctrl+C to stop.'; \
-  wait"]
+    echo 'Starting Node server (port 3001)...'; \
+    (cd nodeJs_server && node main.mjs) & \
+    echo 'Starting client (port 3000)...'; \
+    (cd ../client && serve -s build -l 3000) & \
+    echo 'Starting Python server (port 3002) with Gunicorn...'; \
+    (cd python_server && gunicorn -w 4 -b 0.0.0.0:3002 app:app) & \
+    echo 'Starting Rust server (port 3003)...'; \
+    (cd rust_server && ROCKET_ADDRESS=0.0.0.0 ROCKET_PORT=3003 ./target/release/server) & \
+    echo 'All services started. Press Ctrl+C to stop.'; \
+    wait"]
