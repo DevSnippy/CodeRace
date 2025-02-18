@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Data {
   userId: number;
   id: number;
-
 }
 
 const RustComponent: React.FC = () => {
@@ -17,11 +16,11 @@ const RustComponent: React.FC = () => {
     const startTime = Date.now();
 
     try {
-      const response = await fetch('http://localhost:3003/quicksort/sorted/500');
+      const response = await fetch("/api/rust/quicksort/sorted/500");
       const data = await response.json();
       setTodo(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
 
     const endTime = Date.now();
@@ -33,13 +32,14 @@ const RustComponent: React.FC = () => {
 
   return (
     <div>
-      <button onClick={fetchData}>click here to sort Data from rust server</button>
+      <button onClick={fetchData}>
+        click here to sort Data from rust server
+      </button>
 
       {loading && <p>Loading...</p>}
 
       {Data && (
         <div>
-        
           <p>{`Time taken: ${time}ms`}</p>
         </div>
       )}

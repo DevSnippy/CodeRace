@@ -19,17 +19,20 @@ const data = [
 
 export default function QuickSortBenchmark() {
   return (
-    <div className="p-6 text-center flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-5xl font-extrabold mb-6">QuickSort Benchmark</h1>
+    <div className="p-4 sm:p-6 text-center flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6">
+        QuickSort Benchmark
+      </h1>
 
-      <p className="text-lg mb-6 max-w-2xl">
+      <p className="text-base sm:text-lg mb-4 sm:mb-6 max-w-2xl">
         We automatically ran a QuickSort on 500,000 numbers{" "}
         <span className="font-semibold">100 times</span> in each language and
         took the average execution time to generate the results below.
       </p>
 
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-5xl w-full mb-8">
-        <ResponsiveContainer width="100%" height={450}>
+      {/* Chart Container */}
+      <div className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg w-full mb-8 h-72 sm:h-[450px] sm:max-w-5xl">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
             margin={{ top: 40, right: 30, left: 20, bottom: 5 }}
@@ -44,7 +47,6 @@ export default function QuickSortBenchmark() {
             >
               Average Execution Time (s) (Lower is better)
             </text>
-
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
             <XAxis dataKey="language" stroke="#fff" />
             <YAxis stroke="#fff" />
@@ -61,38 +63,49 @@ export default function QuickSortBenchmark() {
         </ResponsiveContainer>
       </div>
 
-      <div className="overflow-x-auto w-full max-w-5xl">
-        <table className="table-auto w-full text-left">
+      {/* Table Container */}
+      <div className="overflow-x-auto w-full sm:max-w-5xl">
+        <table className="table-auto w-full text-left text-sm sm:text-base">
           <thead className="bg-gray-800">
             <tr>
-              <th className="px-4 py-3 border-b-2 border-gray-700">Language</th>
-              <th className="px-4 py-3 border-b-2 border-gray-700">
+              <th className="px-2 sm:px-4 py-2 sm:py-3 border-b-2 border-gray-700">
+                Language
+              </th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 border-b-2 border-gray-700">
                 Avg. Time (s)
               </th>
-              <th className="px-4 py-3 border-b-2 border-gray-700">
+              <th className="px-2 sm:px-4 py-2 sm:py-3 border-b-2 border-gray-700">
                 Explanation
               </th>
-              <th className="px-4 py-3 border-b-2 border-gray-700">Pros</th>
-              <th className="px-4 py-3 border-b-2 border-gray-700">Cons</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 border-b-2 border-gray-700">
+                Pros
+              </th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 border-b-2 border-gray-700">
+                Cons
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr className="odd:bg-gray-700 even:bg-gray-600">
-              <td className="px-4 py-3 border-b border-gray-700">Rust</td>
-              <td className="px-4 py-3 border-b border-gray-700">0.1894</td>
-              <td className="px-4 py-3 border-b border-gray-700">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                Rust
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                0.1894
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
                 Rust compiles to highly optimized machine code with minimal
                 runtime overhead.
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>High performance</li>
                   <li>Memory safety</li>
                   <li>Great concurrency support</li>
                 </ul>
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>Steep learning curve</li>
                   <li>Longer compile times</li>
                 </ul>
@@ -100,20 +113,24 @@ export default function QuickSortBenchmark() {
             </tr>
 
             <tr className="odd:bg-gray-700 even:bg-gray-600">
-              <td className="px-4 py-3 border-b border-gray-700">Node.js</td>
-              <td className="px-4 py-3 border-b border-gray-700">4.9959</td>
-              <td className="px-4 py-3 border-b border-gray-700">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                Node.js
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                4.9959
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
                 Node.js uses the V8 engine and a single-threaded event loop with
                 non-blocking I/O.
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>Large ecosystem</li>
                   <li>Non-blocking I/O</li>
                 </ul>
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>Single-threaded</li>
                   <li>Slower than compiled languages</li>
                 </ul>
@@ -121,20 +138,24 @@ export default function QuickSortBenchmark() {
             </tr>
 
             <tr className="odd:bg-gray-700 even:bg-gray-600">
-              <td className="px-4 py-3 border-b border-gray-700">Python</td>
-              <td className="px-4 py-3 border-b border-gray-700">11.7542</td>
-              <td className="px-4 py-3 border-b border-gray-700">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                Python
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                11.7542
+              </td>
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
                 Python is interpreted and dynamically typed, resulting in extra
                 runtime overhead.
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>Simple to learn</li>
                   <li>Great for data science</li>
                 </ul>
               </td>
-              <td className="px-4 py-3 border-b border-gray-700">
-                <ul className="list-none pl-0">
+              <td className="px-2 sm:px-4 py-2 sm:py-3 border-b border-gray-700">
+                <ul className="list-disc list-inside">
                   <li>Slower execution</li>
                   <li>High memory usage</li>
                 </ul>

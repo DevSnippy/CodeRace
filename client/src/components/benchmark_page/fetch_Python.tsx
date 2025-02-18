@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Data {
   userId: number;
   id: number;
-
 }
 
 const PythonComponent: React.FC = () => {
@@ -17,11 +16,11 @@ const PythonComponent: React.FC = () => {
     const startTime = Date.now();
 
     try {
-      const response = await fetch('http://127.0.0.1:3002/PyJson/10mb');
+      const response = await fetch("/api/python/PyJson/10mb");
       const data = await response.json();
       setTodo(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
 
     const endTime = Date.now();
@@ -33,13 +32,14 @@ const PythonComponent: React.FC = () => {
 
   return (
     <div>
-      <button onClick={fetchData}>click here to Fetch Data from Python server</button>
+      <button onClick={fetchData}>
+        click here to Fetch Data from Python server
+      </button>
 
       {loading && <p>Loading...</p>}
 
       {Data && (
         <div>
-        
           <p>{`Time taken: ${time}ms`}</p>
         </div>
       )}

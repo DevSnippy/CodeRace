@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Data {
   userId: number;
   id: number;
-
 }
 
 const PythonComponent: React.FC = () => {
@@ -17,15 +16,15 @@ const PythonComponent: React.FC = () => {
     const startTime = Date.now();
 
     try {
-      const response = await fetch('http://localhost:3002/quickSort/sorted/500');
+      const response = await fetch("/api/python/quicksort/sorted/500");
       const data = await response.json();
       setTodo(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
 
     const endTime = Date.now();
-    const elapsedTime = (endTime - startTime)/1000 ;
+    const elapsedTime = (endTime - startTime) / 1000;
 
     setTime(elapsedTime);
     setLoading(false);
@@ -33,15 +32,22 @@ const PythonComponent: React.FC = () => {
 
   return (
     <div>
-      <button onClick={fetchData}>click here to sort Data from python server</button>
+      <button onClick={fetchData}>
+        click here to sort Data from python server
+      </button>
 
       {loading && <p>Loading...</p>}
 
       {Data && (
         <div>
-        
-          <p>{`Time taken: ${time}s`}</p> 
-          <p>click <a href='http://localhost:3002/quickSort/sorted/500' target='blank' >here </a>to see the result</p>
+          <p>{`Time taken: ${time}s`}</p>
+          <p>
+            click{" "}
+            <a href="http://localhost:3002/quickSort/sorted/500" target="blank">
+              here{" "}
+            </a>
+            to see the result
+          </p>
         </div>
       )}
     </div>
