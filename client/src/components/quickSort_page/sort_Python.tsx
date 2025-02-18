@@ -16,7 +16,7 @@ const PythonComponent: React.FC = () => {
     const startTime = Date.now();
 
     try {
-      const response = await fetch("/api/python/quicksort/sorted/500");
+      const response = await fetch("/api/python/quickSort/sorted/500");
       const data = await response.json();
       setTodo(data);
     } catch (error) {
